@@ -8,10 +8,6 @@
         ...
     </textarea>
 <script>
-    window.addEventListener("message", (event) => {
-        console.log("iframe message event =>", event)
-
-    }, false)
     function displayMessage (evt) {
         let message;
         if (evt.origin !== "http://localhost:3000") {
