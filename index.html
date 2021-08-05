@@ -7,7 +7,7 @@
 <script>
     function messageHandler (event) {
         if (event.origin === "http://localhost:3000" && event.data === 'is frame loaded') {
-            window.postMessage('loaded', event.origin)
+            window.parent.postMessage('loaded', event.origin)
         }
     }
 
