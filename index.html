@@ -4,27 +4,19 @@
 </head>
 <body>
     <h1>Hello World!</h1>
-    <textarea id="received-message">
-        ...
-    </textarea>
 <script>
-    function displayMessage (evt) {
-        let message;
-        if (evt.origin !== "http://localhost:3000") {
-            message = "You are not worthy";
+    function messageHandler (event) {
+        if (event.origin === "http://localhost:3000" && event.data === 'is frame loaded') {
+            window.postMessage('loaded', event.origin)
         }
-        else {
-            message = "I got " + evt.data + " from " + evt.origin;
-        }
-        document.getElementById("received-message").innerHTML = message;
     }
 
     if (window.addEventListener) {
         // For standards-compliant web browsers
-        window.addEventListener("message", displayMessage, false);
+        window.addEventListener("message", messageHandler, false);
     }
     else {
-        window.attachEvent("onmessage", displayMessage);
+        window.attachEvent("onmessage", messageHandler);
     }
 </script>
 </body>
